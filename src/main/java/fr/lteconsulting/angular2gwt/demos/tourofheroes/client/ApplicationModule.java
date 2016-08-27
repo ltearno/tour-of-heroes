@@ -12,13 +12,17 @@ import jsinterop.annotations.JsType;
 				Routes.class },
 		declarations = {
 				ApplicationComponent.class,
+				DashboardComponent.class,
 				HeroesComponent.class,
 				HeroDetailComponent.class
 		},
 		providers = {
 				HeroService.class
 		},
-		entryComponents = HeroesComponent.class,
+		entryComponents = {
+				HeroesComponent.class,
+				DashboardComponent.class
+		},
 		bootstrap = {
 				ApplicationComponent.class
 		} )

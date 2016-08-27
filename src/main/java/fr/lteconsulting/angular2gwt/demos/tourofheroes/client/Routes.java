@@ -13,8 +13,15 @@ public class Routes implements ProviderWrapper
 	{
 		return RouterModule.forRoot( JsArray.of(
 				RouterConfig.route(
+						"",
+						"/dashboard",
+						"full" ),
+				RouterConfig.route(
 						"heroes",
-						HeroesComponent_AngularComponent.getComponentPrototype() ) ),
+						HeroesComponent_AngularComponent.getComponentPrototype() ),
+				RouterConfig.route(
+						"dashboard",
+						DashboardComponent_AngularComponent.getComponentPrototype() ) ),
 				new JsObject().set( "useHash", true ) );
 	}
 }
