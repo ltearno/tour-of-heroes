@@ -2,6 +2,7 @@ package fr.lteconsulting.angular2gwt.demos.tourofheroes.client;
 
 import fr.lteconsulting.angular2gwt.client.JsArray;
 import fr.lteconsulting.angular2gwt.client.interop.ng.core.OnInit;
+import fr.lteconsulting.angular2gwt.client.interop.ng.router.Router;
 import fr.lteconsulting.angular2gwt.ng.core.Component;
 import jsinterop.annotations.JsType;
 
@@ -14,10 +15,12 @@ public class DashboardComponent implements OnInit
 	public JsArray<Hero> heroes = JsArray.empty();
 
 	private HeroService heroService;
+	private Router router;
 
-	public DashboardComponent( HeroService heroService )
+	public DashboardComponent( HeroService heroService, Router router )
 	{
 		this.heroService = heroService;
+		this.router = router;
 	}
 
 	@Override
@@ -28,6 +31,7 @@ public class DashboardComponent implements OnInit
 
 	public void gotoDetail( Hero hero )
 	{
-		// not implemented yet
+		JsArray<?> link = JsArray.of( "/detail", String.valueOf( hero.id ) );
+		router.navigate( link );
 	}
 }

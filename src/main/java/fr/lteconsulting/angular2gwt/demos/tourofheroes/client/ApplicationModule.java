@@ -21,6 +21,7 @@ import jsinterop.annotations.JsType;
 		},
 		entryComponents = {
 				HeroesComponent.class,
+				HeroDetailComponent.class,
 				DashboardComponent.class
 		},
 		bootstrap = {
