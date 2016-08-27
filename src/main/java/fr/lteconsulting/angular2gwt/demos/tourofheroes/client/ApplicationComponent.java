@@ -44,14 +44,14 @@ public class ApplicationComponent implements OnInit
 	{
 		getHeroes();
 	}
-	
-	public void getHeroes()
-	{
-		heroes = heroService.getHeroes();
-	}
 
 	public void onSelect( Hero hero )
 	{
 		selectedHero = hero;
+	}
+	
+	private void getHeroes()
+	{
+		heroService.getHeroes().then( heroes -> this.heroes = heroes );
 	}
 }

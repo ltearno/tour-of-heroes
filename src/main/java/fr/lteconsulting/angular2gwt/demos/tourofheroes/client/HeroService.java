@@ -1,6 +1,7 @@
 package fr.lteconsulting.angular2gwt.demos.tourofheroes.client;
 
 import fr.lteconsulting.angular2gwt.client.JsArray;
+import fr.lteconsulting.angular2gwt.client.interop.promise.Promise;
 import fr.lteconsulting.angular2gwt.ng.core.Injectable;
 import jsinterop.annotations.JsType;
 
@@ -19,9 +20,9 @@ public class HeroService
 			new Hero( 18, "Dr IQ" ),
 			new Hero( 19, "Magma" ),
 			new Hero( 20, "Tornado" ) );
-	
-	public JsArray<Hero> getHeroes()
+
+	public Promise<JsArray<Hero>> getHeroes()
 	{
-		return HEROES;
+		return Promise.resolve( HEROES );
 	}
 }
