@@ -6,12 +6,20 @@ import fr.lteconsulting.angular2gwt.ng.core.NgModule;
 import jsinterop.annotations.JsType;
 
 @NgModule(
-		imports = { BrowserModule.class, FormsModule.class },
+		imports = {
+				BrowserModule.class,
+				FormsModule.class },
 		declarations = {
 				ApplicationComponent.class,
+				HeroesComponent.class,
 				HeroDetailComponent.class
 		},
-		bootstrap = ApplicationComponent.class )
+		providers = {
+				HeroService.class
+		},
+		bootstrap = {
+				ApplicationComponent.class
+		} )
 @JsType
 public class ApplicationModule
 {
