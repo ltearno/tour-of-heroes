@@ -1,6 +1,7 @@
 package fr.lteconsulting.angular2gwt.demos.tourofheroes.client;
 
 import fr.lteconsulting.angular2gwt.client.JsArray;
+import fr.lteconsulting.angular2gwt.client.interop.ng.core.OnInit;
 import fr.lteconsulting.angular2gwt.ng.core.Component;
 import jsinterop.annotations.JsType;
 
@@ -22,25 +23,32 @@ import jsinterop.annotations.JsType;
 				+ "</li>"
 				+ "<my-hero-detail [hero]='selectedHero'></my-hero-detail>"
 				+ "</ul>",
-		styleUrls = "application.component.css" )
+		styleUrls = "application.component.css",
+		providers = HeroService.class )
 @JsType
-public class ApplicationComponent
+public class ApplicationComponent implements OnInit
 {
-	private static final JsArray<Hero> HEROES = JsArray.of(
-			new Hero( 11, "Mr. Nice" ),
-			new Hero( 12, "Narco" ),
-			new Hero( 13, "Bombasto" ),
-			new Hero( 14, "Celeritas" ),
-			new Hero( 15, "Magneta" ),
-			new Hero( 16, "RubberMan" ),
-			new Hero( 17, "Dynama" ),
-			new Hero( 18, "Dr IQ" ),
-			new Hero( 19, "Magma" ),
-			new Hero( 20, "Tornado" ) );
-
 	public String title = "Tour of Heroes";
 	public Hero selectedHero = null;
-	public JsArray<Hero> heroes = HEROES;
+	public JsArray<Hero> heroes;
+	
+	private HeroService heroService;
+
+	public ApplicationComponent( HeroService heroService )
+	{
+		this.heroService = heroService;
+	}
+
+	@Override
+	public void ngOnInit()
+	{
+		getHeroes();
+	}
+	
+	public void getHeroes()
+	{
+		heroes = heroService.getHeroes();
+	}
 
 	public void onSelect( Hero hero )
 	{
