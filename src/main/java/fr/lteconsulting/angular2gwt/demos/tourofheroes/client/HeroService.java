@@ -27,10 +27,15 @@ public class HeroService
 		return Promise.resolve( HEROES );
 	}
 
+	public Promise<Hero> getHero( int id )
+	{
+		return getHeroes().then( heroes -> heroes.find( hero -> hero.id == id ) );
+	}
+
 	public Promise<JsArray<Hero>> getHeroesSlowly()
 	{
 		return new Promise<>( ( resolver, rejecter ) -> {
-			GlobalScope.setTimeout( () -> resolver.resolve(null), 2000 );
+			GlobalScope.setTimeout( () -> resolver.resolve( null ), 2000 );
 		} ).then( nop -> getHeroes() );
 	}
 }
