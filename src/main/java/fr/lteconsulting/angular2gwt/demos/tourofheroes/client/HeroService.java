@@ -1,6 +1,7 @@
 package fr.lteconsulting.angular2gwt.demos.tourofheroes.client;
 
 import fr.lteconsulting.angular2gwt.client.JsArray;
+import fr.lteconsulting.angular2gwt.client.interop.GlobalScope;
 import fr.lteconsulting.angular2gwt.client.interop.promise.Promise;
 import fr.lteconsulting.angular2gwt.ng.core.Injectable;
 import jsinterop.annotations.JsType;
@@ -24,5 +25,12 @@ public class HeroService
 	public Promise<JsArray<Hero>> getHeroes()
 	{
 		return Promise.resolve( HEROES );
+	}
+
+	public Promise<JsArray<Hero>> getHeroesSlowly()
+	{
+		return new Promise<>( ( resolver, rejecter ) -> {
+			GlobalScope.setTimeout( () -> resolver.resolve(null), 2000 );
+		} ).then( nop -> getHeroes() );
 	}
 }

@@ -52,6 +52,6 @@ public class ApplicationComponent implements OnInit
 	
 	private void getHeroes()
 	{
-		heroService.getHeroes().then( heroes -> this.heroes = heroes );
+		heroService.getHeroesSlowly().then( heroes -> this.heroes = heroes );
 	}
 }
