@@ -7,7 +7,10 @@ import jsinterop.annotations.JsType;
 
 @NgModule(
 		imports = { BrowserModule.class, FormsModule.class },
-		declarations = ApplicationComponent.class,
+		declarations = {
+				ApplicationComponent.class,
+				HeroDetailComponent.class
+		},
 		bootstrap = ApplicationComponent.class )
 @JsType
 public class ApplicationModule
