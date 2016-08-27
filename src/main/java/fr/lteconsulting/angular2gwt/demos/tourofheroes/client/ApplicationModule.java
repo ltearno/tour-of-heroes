@@ -8,7 +8,8 @@ import jsinterop.annotations.JsType;
 @NgModule(
 		imports = {
 				BrowserModule.class,
-				FormsModule.class },
+				FormsModule.class,
+				Routes.class },
 		declarations = {
 				ApplicationComponent.class,
 				HeroesComponent.class,
@@ -17,6 +18,7 @@ import jsinterop.annotations.JsType;
 		providers = {
 				HeroService.class
 		},
+		entryComponents = HeroesComponent.class,
 		bootstrap = {
 				ApplicationComponent.class
 		} )
