@@ -2,6 +2,7 @@ package fr.lteconsulting.angular2gwt.demos.tourofheroes.client;
 
 import fr.lteconsulting.angular2gwt.client.JsArray;
 import fr.lteconsulting.angular2gwt.client.interop.ng.core.OnInit;
+import fr.lteconsulting.angular2gwt.client.interop.ng.router.Router;
 import fr.lteconsulting.angular2gwt.ng.core.Component;
 import jsinterop.annotations.JsType;
 
@@ -13,16 +14,8 @@ import jsinterop.annotations.JsType;
  */
 @Component(
 		selector = "my-heroes",
-		template = "<h2>My Heroes</h2>"
-				+ "<ul class='heroes'>"
-				+ "<li *ngFor='let hero of heroes'"
-				+ " (click)='onSelect(hero)'"
-				+ " [class.selected]='hero === selectedHero'>"
-				+ " <span class='badge'>{{hero.id}}</span> {{hero.name}}"
-				+ "</li>"
-				+ "</ul>"
-				+ "<my-hero-detail [hero]='selectedHero'></my-hero-detail>",
-		styleUrls = "application.component.css" )
+		templateUrl = "heroes.component.html",
+		styleUrls = "heroes.component.css" )
 @JsType
 public class HeroesComponent implements OnInit
 {
@@ -30,10 +23,12 @@ public class HeroesComponent implements OnInit
 	public JsArray<Hero> heroes;
 
 	private HeroService heroService;
+	private Router router;
 
-	public HeroesComponent( HeroService heroService )
+	public HeroesComponent( HeroService heroService, Router router )
 	{
 		this.heroService = heroService;
+		this.router = router;
 	}
 
 	@Override
@@ -45,6 +40,11 @@ public class HeroesComponent implements OnInit
 	public void onSelect( Hero hero )
 	{
 		selectedHero = hero;
+	}
+
+	public void gotoDetail()
+	{
+		router.navigate( JsArray.of( "/detail", String.valueOf( selectedHero.id ) ) );
 	}
 
 	private void getHeroes()
