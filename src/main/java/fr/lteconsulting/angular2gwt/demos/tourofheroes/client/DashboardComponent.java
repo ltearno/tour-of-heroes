@@ -8,7 +8,8 @@ import jsinterop.annotations.JsType;
 
 @Component(
 		selector = "my-dashboard",
-		templateUrl = "dashboard.component.html" )
+		templateUrl = "dashboard.component.html",
+		styleUrls = "dashboard.component.css" )
 @JsType
 public class DashboardComponent implements OnInit
 {

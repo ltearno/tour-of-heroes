@@ -4,16 +4,15 @@ import fr.lteconsulting.angular2gwt.client.JsTools;
 import fr.lteconsulting.angular2gwt.client.interop.ng.core.OnInit;
 import fr.lteconsulting.angular2gwt.client.interop.ng.router.ActivatedRoute;
 import fr.lteconsulting.angular2gwt.ng.core.Component;
-import fr.lteconsulting.angular2gwt.ng.core.Input;
 import jsinterop.annotations.JsType;
 
 @Component(
 		selector = "my-hero-detail",
-		templateUrl = "hero-detail.component.html" )
+		templateUrl = "hero-detail.component.html",
+		styleUrls = "hero-detail.component.css" )
 @JsType
 public class HeroDetailComponent implements OnInit
 {
-	@Input
 	public Hero hero = null;
 
 	private HeroService heroService;
