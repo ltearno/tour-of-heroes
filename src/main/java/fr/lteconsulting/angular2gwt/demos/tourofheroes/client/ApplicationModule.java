@@ -16,7 +16,8 @@ import jsinterop.annotations.JsType;
 				ApplicationComponent.class,
 				DashboardComponent.class,
 				HeroesComponent.class,
-				HeroDetailComponent.class
+				HeroDetailComponent.class,
+				HeroSearchComponent.class
 		},
 		providers = {
 				HeroService.class
