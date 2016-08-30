@@ -49,6 +49,6 @@ public class HeroesComponent implements OnInit
 
 	private void getHeroes()
 	{
-		heroService.getHeroesSlowly().then( heroes -> this.heroes = heroes );
+		heroService.getHeroes().then( heroes -> this.heroes = heroes );
 	}
 }

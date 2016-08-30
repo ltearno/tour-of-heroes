@@ -2,19 +2,12 @@ package fr.lteconsulting.angular2gwt.demos.tourofheroes.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.ComponentScan;
 
-@RestController
 @EnableAutoConfiguration
+@ComponentScan( basePackageClasses = ApplicationController.class )
 public class ApplicationController
 {
-	@RequestMapping( "/test" )
-	String test()
-	{
-		return "This is a test";
-	}
-
 	public static void main( String[] args ) throws Exception
 	{
 		SpringApplication.run( ApplicationController.class, args );

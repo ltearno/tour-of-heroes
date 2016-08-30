@@ -1,6 +1,7 @@
 package fr.lteconsulting.angular2gwt.demos.tourofheroes.client;
 
 import fr.lteconsulting.angular2gwt.client.interop.ng.forms.FormsModule;
+import fr.lteconsulting.angular2gwt.client.interop.ng.http.HttpModule;
 import fr.lteconsulting.angular2gwt.client.interop.ng.platformBrowser.BrowserModule;
 import fr.lteconsulting.angular2gwt.ng.core.NgModule;
 import jsinterop.annotations.JsType;
@@ -9,6 +10,7 @@ import jsinterop.annotations.JsType;
 		imports = {
 				BrowserModule.class,
 				FormsModule.class,
+				HttpModule.class,
 				Routes.class },
 		declarations = {
 				ApplicationComponent.class,

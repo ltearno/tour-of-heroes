@@ -1,7 +1,9 @@
 package fr.lteconsulting.angular2gwt.demos.tourofheroes.client;
 
+import com.google.gwt.core.client.GWT;
+
 import fr.lteconsulting.angular2gwt.client.JsArray;
-import fr.lteconsulting.angular2gwt.client.interop.GlobalScope;
+import fr.lteconsulting.angular2gwt.client.interop.ng.http.Http;
 import fr.lteconsulting.angular2gwt.client.interop.promise.Promise;
 import fr.lteconsulting.angular2gwt.ng.core.Injectable;
 import jsinterop.annotations.JsType;
@@ -10,21 +12,20 @@ import jsinterop.annotations.JsType;
 @JsType
 public class HeroService
 {
-	private static final JsArray<Hero> HEROES = JsArray.of(
-			new Hero( 11, "Mr. Nice" ),
-			new Hero( 12, "Narco" ),
-			new Hero( 13, "Bombasto" ),
-			new Hero( 14, "Celeritas" ),
-			new Hero( 15, "Magneta" ),
-			new Hero( 16, "RubberMan" ),
-			new Hero( 17, "Dynama" ),
-			new Hero( 18, "Dr IQ" ),
-			new Hero( 19, "Magma" ),
-			new Hero( 20, "Tornado" ) );
+	private Http http;
+	private String heroesUrl = "app/heroes"; // URL to web api
+
+	public HeroService( Http http )
+	{
+		this.http = http;
+	}
 
 	public Promise<JsArray<Hero>> getHeroes()
 	{
-		return Promise.resolve( HEROES );
+		return http.get( heroesUrl )
+				.toPromise()
+				.<JsArray<Hero>> then( response -> response.json() )
+				.onCatch( this::handleError );
 	}
 
 	public Promise<Hero> getHero( int id )
@@ -32,10 +33,9 @@ public class HeroService
 		return getHeroes().then( heroes -> heroes.find( hero -> hero.id == id ) );
 	}
 
-	public Promise<JsArray<Hero>> getHeroesSlowly()
+	private Promise<?> handleError( Object error )
 	{
-		return new Promise<>( ( resolver, rejecter ) -> {
-			GlobalScope.setTimeout( () -> resolver.resolve( null ), 2000 );
-		} ).then( nop -> getHeroes() );
+		GWT.log( "An error occurred" + error ); // for demo purposes only
+		return Promise.reject( error );
 	}
 }
