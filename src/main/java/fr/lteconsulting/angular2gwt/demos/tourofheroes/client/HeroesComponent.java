@@ -1,6 +1,7 @@
 package fr.lteconsulting.angular2gwt.demos.tourofheroes.client;
 
 import fr.lteconsulting.angular2gwt.client.JsArray;
+import fr.lteconsulting.angular2gwt.client.interop.Event;
 import fr.lteconsulting.angular2gwt.client.interop.ng.core.OnInit;
 import fr.lteconsulting.angular2gwt.client.interop.ng.router.Router;
 import fr.lteconsulting.angular2gwt.ng.core.Component;
@@ -21,6 +22,8 @@ public class HeroesComponent implements OnInit
 {
 	public Hero selectedHero = null;
 	public JsArray<Hero> heroes;
+	public Object error;
+	public boolean addingHero;
 
 	private HeroService heroService;
 	private Router router;
@@ -35,6 +38,32 @@ public class HeroesComponent implements OnInit
 	public void ngOnInit()
 	{
 		getHeroes();
+	}
+
+	public void addHero()
+	{
+		addingHero = true;
+		selectedHero = null;
+	}
+	
+	public void updated( Hero savedHero )
+	{
+		addingHero = false;
+
+		if( savedHero != null )
+			getHeroes();
+	}
+
+	public void deleteHero( Hero hero, Event event )
+	{
+		event.stopPropagation();
+
+		heroService.delete( hero.id ).then( res -> {
+			heroes = heroes.filter( h -> h != hero );
+			if( selectedHero == hero )
+				selectedHero = null;
+			return null;
+		}, error -> this.error = error );
 	}
 
 	public void onSelect( Hero hero )
