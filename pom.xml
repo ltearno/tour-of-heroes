@@ -101,13 +101,6 @@
 							<goal>compile</goal>
 						</goals>
 					</execution>
-					<execution>
-						<id>test</id>
-						<phase>test</phase>
-						<goals>
-							<goal>test</goal>
-						</goals>
-					</execution>
 				</executions>
 				<configuration>
 					<runTarget>http://localhost:8080</runTarget>
@@ -124,11 +117,8 @@
 					<deploy>${project.build.directory}/gwt-deploy</deploy>
 					<persistentunitcache>true</persistentunitcache>
 					<persistentunitcachedir>${basedir}/target/gwt-unitCache</persistentunitcachedir>
-
-					<includes>**/*GwtTest.java</includes>
-					<productionMode>true</productionMode>
-					<!-- <htmlunit>Chrome</htmlunit> -->
-					<mode>manual</mode>
+					
+					<style>DETAILED</style>
 				</configuration>
 			</plugin>
 			<plugin>

@@ -12,38 +12,38 @@ import fr.lteconsulting.angular2gwt.demos.tourofheroes.client.Hero;
 
 public class HeroesRepository
 {
-	private final Map<Integer, Hero> HEROES = new HashMap<>();
+	private final Map<Integer, Hero> heroes = new HashMap<>();
 	private int nextId = 42;
 
 	public HeroesRepository()
 	{
-		storeHero( new Hero( 11, "Mr. Nice" ) );
-		storeHero( new Hero( 12, "Narco" ) );
-		storeHero( new Hero( 13, "Bombasto" ) );
-		storeHero( new Hero( 14, "Celeritas" ) );
-		storeHero( new Hero( 15, "Magneta" ) );
-		storeHero( new Hero( 16, "RubberMan" ) );
-		storeHero( new Hero( 17, "Dynama" ) );
-		storeHero( new Hero( 18, "Dr IQ" ) );
-		storeHero( new Hero( 19, "Magma" ) );
-		storeHero( new Hero( 20, "Tornado" ) );
+		storeHero( new Hero( generateId(), "Mr. Nice" ) );
+		storeHero( new Hero( generateId(), "Narco" ) );
+		storeHero( new Hero( generateId(), "Bombasto" ) );
+		storeHero( new Hero( generateId(), "Celeritas" ) );
+		storeHero( new Hero( generateId(), "Magneta" ) );
+		storeHero( new Hero( generateId(), "RubberMan" ) );
+		storeHero( new Hero( generateId(), "Dynama" ) );
+		storeHero( new Hero( generateId(), "Dr IQ" ) );
+		storeHero( new Hero( generateId(), "Magma" ) );
+		storeHero( new Hero( generateId(), "Tornado" ) );
 	}
 
 	public Collection<Hero> getHeroes()
 	{
-		return HEROES.values();
+		return heroes.values();
 	}
 
 	public List<Hero> searchHeroesByName( @RequestParam String name )
 	{
-		return HEROES.values().stream()
+		return heroes.values().stream()
 				.filter( hero -> hero.name.toLowerCase().contains( name.toLowerCase() ) )
 				.collect( Collectors.toList() );
 	}
 
 	public Hero addHero( Hero hero )
 	{
-		hero.id = nextId++;
+		hero.id = generateId();
 
 		storeHero( hero );
 
@@ -61,11 +61,16 @@ public class HeroesRepository
 
 	public boolean deleteHero( int id )
 	{
-		return HEROES.remove( id ) != null;
+		return heroes.remove( id ) != null;
 	}
 
 	private void storeHero( Hero hero )
 	{
-		HEROES.put( hero.id, hero );
+		heroes.put( hero.id, hero );
+	}
+
+	private int generateId()
+	{
+		return nextId++;
 	}
 }
