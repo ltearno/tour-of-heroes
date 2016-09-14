@@ -19,7 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith( SpringJUnit4ClassRunner.class )
-@SpringBootTest( /* properties = "server.port=9000", */ webEnvironment = WebEnvironment.RANDOM_PORT )
+@SpringBootTest( webEnvironment = WebEnvironment.RANDOM_PORT )
 public class ApplicationTest
 {
 	@LocalServerPort

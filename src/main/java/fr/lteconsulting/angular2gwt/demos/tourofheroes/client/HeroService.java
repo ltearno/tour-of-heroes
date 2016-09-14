@@ -74,8 +74,7 @@ public class HeroService
 
 	public Promise<Hero> update( Hero hero )
 	{
-		String url = heroesUrl + "/" + hero.id;
-		return http.put( url,
+		return http.put( heroesUrl,
 				JSON.stringify( hero ),
 				new JsObject().set( "headers", headers ) )
 				.toPromise()
